@@ -34,6 +34,12 @@ public class ObjectRotator : MonoBehaviour
         LimitRotation();
     }
 
+    [ContextMenu("Get Rotation")]
+    public void GetRotation()
+    {
+        Debug.Log(transform.localRotation.eulerAngles);
+    }
+
     void LimitRotation()
     {
         Vector3 playerAngles = transform.rotation.eulerAngles;

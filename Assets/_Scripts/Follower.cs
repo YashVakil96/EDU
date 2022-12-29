@@ -10,16 +10,22 @@ public class Follower : MonoBehaviour
     public float Speed;
     public float offset;
     public float distanceTravelled;
+    public static bool On;
 
 
     private void Start()
     {
+        Speed = 5;
         distanceTravelled = offset;
+        path = FindObjectOfType<PathCreator>();
     }
 
     private void Update()
     {
-        distanceTravelled += Speed * Time.deltaTime;
-        transform.position = path.path.GetPointAtDistance(distanceTravelled);
+        if (On)
+        {
+            distanceTravelled += Speed * Time.deltaTime;
+            transform.position = path.path.GetPointAtDistance(distanceTravelled);
+        }
     }
 }
