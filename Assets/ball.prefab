@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3296703819437659328}
   - component: {fileID: 3296703819437659359}
   - component: {fileID: 3296703819437659330}
+  - component: {fileID: -6580741889133996651}
   m_Layer: 0
   m_Name: ball
   m_TagString: Untagged
@@ -112,3 +113,16 @@ MonoBehaviour:
   Speed: 0
   offset: 0
   distanceTravelled: 0
+--- !u!114 &-6580741889133996651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3296703819437659356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2709d0522be8d3c47870098d3b93ecf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderer: {fileID: 3296703819437659328}

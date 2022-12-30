@@ -6,20 +6,27 @@ public class ObjectRotator : MonoBehaviour
     public bool isDragging;
     public float rotationSpeed;
     public Vector3 initPos;
-    public Rigidbody rb;
-    public Transform cam;
+    private Rigidbody rb;
+    private Transform cam;
+
+    public Transform sun;
 
     public float minX;
     public float maxX;
 
     public float minY;
     public float maxY;
-    
+
     public float minZ;
     public float maxZ;
 
+    public float intensity;
+
+    public GameObject lightobj;
+
     public void Start()
     {
+        rb = GetComponent<Rigidbody>();
         cam = Camera.main.transform;
     }
 
@@ -32,12 +39,15 @@ public class ObjectRotator : MonoBehaviour
         transform.Rotate(cam.right, y, Space.World);
 
         LimitRotation();
+        GetRotation();
     }
 
-    [ContextMenu("Get Rotation")]
-    public void GetRotation()
+    private void GetRotation()
     {
-        Debug.Log(transform.localRotation.eulerAngles);
+        var newangle = Vector3.Angle(transform.forward, sun.transform.position-transform.position);
+        // Debug.Log(newangle);
+
+        // lightobj.GetComponent<Renderer>().material.SetColor("_EmissionColor", Color.red * newlerp*newangle);
     }
 
     void LimitRotation()
@@ -46,9 +56,9 @@ public class ObjectRotator : MonoBehaviour
         playerAngles.x = (playerAngles.x > 180) ? playerAngles.x - 360 : playerAngles.x;
         playerAngles.x = Mathf.Clamp(playerAngles.x, minX, maxX);
 
-        playerAngles.y = (playerAngles.y > 359.9f) ? playerAngles.y - 360 : playerAngles.y;
+        playerAngles.y = (playerAngles.y > 180) ? playerAngles.y - 360 : playerAngles.y;
         playerAngles.y = Mathf.Clamp(playerAngles.y, minY, maxY);
-        
+
         playerAngles.z = (playerAngles.z > 180) ? playerAngles.z - 360 : playerAngles.z;
         playerAngles.z = Mathf.Clamp(playerAngles.z, minZ, maxZ);
         transform.rotation = Quaternion.Euler(playerAngles);
